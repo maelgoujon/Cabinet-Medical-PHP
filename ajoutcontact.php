@@ -131,7 +131,7 @@ try {
                 <option value="2">Madame</option>
                 <!-- Ajoutez d'autres options si necessaire -->
             </select>
-            <br>
+            <br><br>
             <label for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" required>
             <br>
@@ -141,15 +141,16 @@ try {
             <label for="adresse">Adresse :</label>
             <input type="text" id="adresse" name="adresse" required>
             <br>
+            <!-- champ au format date de naissance -->
             <label for="date_de_naissance">Date de naissance :</label>
-            <input type="text" id="date_de_naissance" name="date_de_naissance" required>
-            <br>
+            <input type="date" id="date_de_naissance" name="date_de_naissance" required>
+            <br><br>
             <label for="lieu_de_naissance">Lieu de naissance :</label>
             <input type="text" id="lieu_de_naissance" name="lieu_de_naissance" required>
             <br>
             <label for="numero_securite_sociale">Numero de securite sociale :</label>
-            <input type="text" id="numero_securite_sociale" name="numero_securite_sociale" required>
-            <br>
+            <input type="number" id="numero_securite_sociale" name="numero_securite_sociale" required>
+            <br><br>
 
             <!-- Champ de selection du medecin referent -->
             <label for="idMedecin">Medecin Referent :</label>
@@ -161,7 +162,7 @@ try {
                 }
                 ?>
             </select>
-            <br>
+            <br><br>
 
             <input type="reset" value="Effacer">
             <input type="submit" value="Ajouter le patient">
