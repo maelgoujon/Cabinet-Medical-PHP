@@ -84,7 +84,7 @@
 <?php
 // Connexion au serveur MySQL
 $server = 'localhost';
-$db = 'PHP_Project';
+$db = 'php_project';
 $login = "etu";
 $mdp = "\$iutinfo";
 
@@ -92,6 +92,9 @@ try {
     $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
     // Definition du mode d'erreur PDO à exception
     $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Récupération de l'idPatient depuis le formulaire
+    $idPatient = $_POST['idPatient'];
 
     // Recuperation des donnees du formulaire HTML
     $civilite= $_POST['civilite'];
@@ -103,22 +106,22 @@ try {
     $numero_securite_sociale = $_POST['numero_securite_sociale'];
     $idMedecin = $_POST['idMedecin'];
 
-    // Requête SQL d'insertion
-    $sql = "INSERT INTO patient (`Civilite`, `Prenom`, `Nom`, `Adresse`, `Date_de_naissance`, `Lieu_de_naissance`, `Numero_Securite_Sociale`, `idMedecin`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    // Requête SQL d'update
+    $sql = "UPDATE patient SET Civilite=?, Prenom=?, Nom=?, Adresse=?, Date_de_naissance=?, Lieu_de_naissance=?, Numero_Securite_Sociale=?, idMedecin=? WHERE idPatient=?";
 
     // Preparation de la requête
     $stmt = $linkpdo->prepare($sql);
 
     // Execution de la requête avec les donnees du formulaire
-    $stmt->execute([$civilite, $prenom, $nom, $adresse, $date_de_naissance, $lieu_de_naissance, $numero_securite_sociale, $idMedecin]);
+    $stmt->execute([$civilite, $prenom, $nom, $adresse, $date_de_naissance, $lieu_de_naissance, $numero_securite_sociale, $idMedecin, $idPatient]);
 
     // Verification de l'insertion
     if ($stmt->rowCount() > 0) {
-        echo "Le patient a ete modifie avec succes. <br>";
+        echo "Le patient a été modifié avec succès. <br>";
         // Bouton "Accueil" pour revenir à la page HTML de base
         echo '<a href="ajoutcontact.php">Accueil</a>';
     } else {
-        echo "Une erreur s'est produite lors de l'ajout du patient.";
+        echo "Une erreur s'est produite lors de la modification du patient.";
     }
 
     // Fermeture de la connexion à la base de donnees
