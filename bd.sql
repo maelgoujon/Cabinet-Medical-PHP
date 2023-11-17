@@ -7,7 +7,7 @@ CREATE TABLE Medecin(
 );
 
 CREATE TABLE Patient(
-   idPatient VARCHAR(50),
+   idPatient INT AUTO_INCREMENT,
    Civilite VARCHAR(50),
    Prenom VARCHAR(50),
    Nom VARCHAR(50),
@@ -26,8 +26,15 @@ CREATE TABLE Consultations(
    Heure_ VARCHAR(50),
    Duree INT DEFAULT 30,
    idMedecin VARCHAR(50) NOT NULL,
-   idPatient VARCHAR(50) NOT NULL,
+   idPatient INT NOT NULL,
    PRIMARY KEY(idConsultation),
    FOREIGN KEY(idMedecin) REFERENCES Medecin(idMedecin),
    FOREIGN KEY(idPatient) REFERENCES Patient(idPatient)
 );
+
+
+insert into `medecin` (`Civilite`, `Nom`, `Prenom`, `idMedecin`) values ('Monsieur', 'NomMichel', 'PrenomMichel', '1');
+insert into `medecin` (`Civilite`, `Nom`, `Prenom`, `idMedecin`) values ('Madame', 'NomMichelle', 'PrenomMichelle', '2');
+
+insert into `patient` (`Adresse`, `Civilite`, `Date_de_naissance`, `Lieu_de_naissance`, `Nom`, `Numero_Securite_Sociale`, `Prenom`, `idMedecin`, `idPatient`) values ('chezmoi', '1', '121212', 'lieunaissance', 'michel', '454545', 'michel', '1', 1);
+insert into `patient` (`Adresse`, `Civilite`, `Date_de_naissance`, `Lieu_de_naissance`, `Nom`, `Numero_Securite_Sociale`, `Prenom`, `idMedecin`, `idPatient`) values ('chezelle', '2', '111111', 'lieunaissance', 'michelle', '444444', 'michelle', '2', 3);

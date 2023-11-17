@@ -70,51 +70,56 @@
     <h1>Ajout d'un patient</h1>
     <div class="container">
     <?php
-        $server = 'localhost';
-        $db = 'php_project';
-        $login = "etu";
-        $mdp = "\$iutinfo";
+$server = 'localhost';
+$db = 'php_project';
+$login = "etu";
+$mdp = "\$iutinfo";
 
-        try {
-            $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
-            $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+try {
+    $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
+    $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                // Recuperation des donnees du formulaire HTML
-                $civilite= $_POST['civilite'];
-                $prenom = $_POST['prenom'];
-                $nom = $_POST['nom'];
-                $adresse = $_POST['adresse'];
-                $date_de_naissance = $_POST['date_de_naissance'];
-                $lieu_de_naissance = $_POST['lieu_de_naissance'];
-                $numero_securite_sociale = $_POST['numero_securite_sociale'];
-                $idMedecin = $_POST['idMedecin']; // Ajoutez le champ de selection du medecin referent
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Recuperation des donnees du formulaire HTML
+        $civilite = $_POST['civilite'];
+        $prenom = $_POST['prenom'];
+        $nom = $_POST['nom'];
+        $adresse = $_POST['adresse'];
+        $date_de_naissance = $_POST['date_de_naissance'];
+        $lieu_de_naissance = $_POST['lieu_de_naissance'];
+        $numero_securite_sociale = $_POST['numero_securite_sociale'];
+        $idMedecin = $_POST['idMedecin']; // Ajoutez le champ de selection du medecin referent
 
-                $sql = "INSERT INTO patient (`Civilite`, `Prenom`, `Nom`, `Adresse`, `Date_de_naissance`, `Lieu_de_naissance`, `Numero_Securite_Sociale`, `idMedecin`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO patient (`Civilite`, `Prenom`, `Nom`, `Adresse`, `Date_de_naissance`, `Lieu_de_naissance`, `Numero_Securite_Sociale`, `idMedecin`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-                $stmt = $linkpdo->prepare($sql);
-                if ($stmt == false) {
-                    die("Erreur prepare");
-                }
-                $test = $stmt->execute([$civilite, $prenom, $nom, $adresse, $date_de_naissance, $lieu_de_naissance, $numero_securite_sociale, $idMedecin]);
-
-                if ($test == false) {
-                    $stmt->debugDumpParams();
-                    die("Erreur Execute");
-                }
-
-                // Verification de l'insertion
-                if ($stmt->rowCount() > 0) {
-                    echo "Le patient a ete ajoute avec succes. <br>";
-                    echo '<a href="ajoutcontact.php">Accueil</a>';
-                } else {
-                    echo "Une erreur s'est produite lors de l'ajout du patient.";
-                }
-            }
-        } catch (PDOException $e) {
-            die('Erreur : ' . $e->getMessage());
+        $stmt = $linkpdo->prepare($sql);
+        if ($stmt == false) {
+            die("Erreur prepare");
         }
-        ?>
+        $test = $stmt->execute([$civilite, $prenom, $nom, $adresse, $date_de_naissance, $lieu_de_naissance, $numero_securite_sociale, $idMedecin]);
+
+        if ($test == false) {
+            $stmt->debugDumpParams();
+            die("Erreur Execute");
+        }
+
+        // Verification de l'insertion
+        if ($stmt->rowCount() > 0) {
+            echo "Le patient a ete ajoute avec succes. <br>";
+            echo '<a href="ajoutcontact.php">Accueil</a>';
+        } else {
+            echo "Une erreur s'est produite lors de l'ajout du patient.";
+        }
+    }
+
+    // Récupération des médecins depuis la table "Medecin"
+    $sqlMedecin = "SELECT idMedecin, Nom FROM Medecin";
+    $stmtMedecin = $linkpdo->query($sqlMedecin);
+
+} catch (PDOException $e) {
+    die('Erreur : ' . $e->getMessage());
+}
+?>
 
         <!-- Formulaire HTML pour saisir un nouveau patient -->
         <form method="post" action="ajoutcontact.php">
@@ -145,13 +150,16 @@
             <label for="numero_securite_sociale">Numero de securite sociale :</label>
             <input type="text" id="numero_securite_sociale" name="numero_securite_sociale" required>
             <br>
+
             <!-- Champ de selection du medecin referent -->
             <label for="idMedecin">Medecin Referent :</label>
             <select id="idMedecin" name="idMedecin">
-                <!-- Remplacez les options ci-dessous par les medecins de votre base de donnees -->
-                <option value="1">Medecin 1</option>
-                <option value="2">Medecin 2</option>
-                <!-- Ajoutez d'autres options si necessaire -->
+                <?php
+                // Affichage des options
+                while ($row = $stmtMedecin->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<option value="' . $row['idMedecin'] . '">' . $row['Nom'] . '</option>';
+                }
+                ?>
             </select>
             <br>
 
