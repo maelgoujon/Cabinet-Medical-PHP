@@ -4,9 +4,8 @@
   box-sizing: border-box;
 }
 
-body {
+.body {
   text-align: center;
-  display: flex;
   height: 100vh;
   width: 100%;
   justify-content: center;
@@ -79,8 +78,85 @@ body {
   background-color: rebeccapurple; /* couleur spéciale pour Contact */
 }
 
+.nav-item:nth-child(6):before {
+  background-color: pink; /* couleur spéciale pour Contact */
+}
+
 @media (max-width: 580px) {
   .nav {
     overflow: auto;
   }
+}
+
+/* Ajoutez ces styles à votre fichier css.css */
+
+body {
+  text-align: center;
+}
+
+.nav {
+  display: flex;
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Ajout d'une marge en bas pour séparer la barre de navigation du contenu */
+}
+
+.nav-item {
+  color: #83818c;
+  padding: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+  margin: 0 6px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-item:before {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 4px 4px 0 0;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.nav-item.is-active:before {
+  background-color: orange;
+}
+
+.nav-item.is-active:hover:before {
+  opacity: 0;
+}
+
+.nav-item:not(.is-active):hover:before,
+.nav-item:first-child:hover:before {
+  opacity: 1;
+  bottom: 0;
+}
+
+/* Ajoutez un style pour le tableau */
+table {
+  width: 100%;
+  margin-top: 20px; /* Ajout d'une marge en haut du tableau */
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Ajoutez un style pour le titre du tableau */
+h2 {
+  margin-top: 20px; /* Ajout d'une marge en haut du titre */
 }
