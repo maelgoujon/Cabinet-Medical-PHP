@@ -4,9 +4,11 @@ session_start();
 
 // Vérifier si l'utilisateur est authentifié
 if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-    header("Location: /Projet/projet_php/login.php");
+    header("Location: /Projet/projet_php/Base/login.php");
     exit();
 }
+
+include '../Base/header.php';
 
 ?>
 
@@ -15,7 +17,7 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Statistiques</title>
+    <title>Patient</title>
     <style>
         @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
 
@@ -185,44 +187,14 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
 
     <body>
 
-    <nav class="nav">
-      <a href="../index.html" class="nav-item is-active" active-color="orange"
-        >Accueil</a
-      >
-      <a
-        href="/Projet/projet_php/Patient/ajoutcontact.php"
-        class="nav-item"
-        active-color="green"
-        >Patient</a
-      >
-      <a
-        href="/Projet/projet_php/Medecin/ajoutmedecin.php"
-        class="nav-item"
-        active-color="blue"
-        >Medecin</a
-      >
-      <a
-        href="/Projet/projet_php/Consultations/index.php"
-        class="nav-item"
-        active-color="red"
-        >Consultations</a
-      >
-      <a
-        href="/Projet/projet_php/Stats/statistiques.php"
-        class="nav-item"
-        active-color="rebeccapurple"
-        >Statistiques</a
-      >
-      <a href="planning.php" class="nav-item" active-color="pink">Planning</a>
-      <span class="nav-indicator"></span>
-    </nav>
+    
 
 
     <?php
-include 'config.php';
+    include '../Base/config.php';
 
 // Requête pour récupérer tous les patients avec le nom du médecin référent
-$sql = "SELECT p.Civilite, p.Prenom, p.Nom, p.Adresse, p.Date_de_naissance, p.Lieu_de_naissance, p.Numero_Securite_Sociale, m.Nom AS NomMedecin, m.Prenom AS PrenomMedecin
+$sql = "SELECT p.idPatient, p.Civilite, p.Prenom, p.Nom, p.Adresse, p.Date_de_naissance, p.Lieu_de_naissance, p.Numero_Securite_Sociale, m.Nom AS NomMedecin, m.Prenom AS PrenomMedecin
         FROM Patient p
         LEFT JOIN Medecin m ON p.idMedecin = m.idMedecin";
 
@@ -240,6 +212,7 @@ echo "<table border='1'>
         <th>Lieu de Naissance</th>
         <th>Numéro Sécurité Sociale</th>
         <th>Médecin Référent</th>
+        <th>Action</th>
     </tr>";
 
 while ($row = $result->fetch_assoc()) {
@@ -253,6 +226,7 @@ while ($row = $result->fetch_assoc()) {
         <td>{$row['Lieu_de_naissance']}</td>
         <td>{$row['Numero_Securite_Sociale']}</td>
         <td>{$row['NomMedecin']} {$row['PrenomMedecin']}</td>
+        <td><a href='modification.php?id={$row['idPatient']}'>Modifier</a> | <a href='suppression.php?id={$row['idPatient']}'>Supprimer</a></td>
     </tr>";
 }
 

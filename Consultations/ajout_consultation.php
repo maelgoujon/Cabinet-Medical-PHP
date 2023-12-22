@@ -8,7 +8,7 @@
 
       // Vérifier si l'utilisateur est authentifié
       if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-          header("Location: /Projet/projet_php/login.php");
+          header("Location: /Projet/projet_php/Base/login.php");
           exit();
       }
 
@@ -183,42 +183,9 @@
     </style>
   </head>
 
-    <body>
-
-    <nav class="nav">
-      <a href="../index.html" class="nav-item is-active" active-color="orange"
-        >Accueil</a
-      >
-      <a
-        href="/Projet/projet_php/Patient/ajoutcontact.php"
-        class="nav-item"
-        active-color="green"
-        >Patient</a
-      >
-      <a
-        href="/Projet/projet_php/Medecin/ajoutmedecin.php"
-        class="nav-item"
-        active-color="blue"
-        >Medecin</a
-      >
-      <a
-        href="/Projet/projet_php/Consultations/index.php"
-        class="nav-item"
-        active-color="red"
-        >Consultations</a
-      >
-      <a
-        href="/Projet/projet_php/Stats/statistiques.php"
-        class="nav-item"
-        active-color="rebeccapurple"
-        >Statistiques</a
-      >
-      <a href="planning.php" class="nav-item" active-color="pink">Planning</a>
-      <span class="nav-indicator"></span>
-    </nav>
-
 <?php
-include 'config.php';
+    include '../Base/header.php';
+    include '../Base/config.php';
 
 // Requête pour récupérer la liste des médecins
 $sqlMedecins = "SELECT * FROM Medecin";
@@ -232,8 +199,16 @@ $resultPatients = $conn->query($sqlPatients);
 echo "<h2>Ajouter une consultation</h2>";
 echo "<form action='process_consultation.php' method='post'>
     Date Consultation: <input type='date' name='dateConsultation'><br>
-    Heure: <input type='text' name='heure'><br>
-    Duree: <input type='text' name='duree'><br>
+    Heure: <input type='time' name='heure'><br>
+    Duree: <select name='duree'>
+              <option value=''>--Choisissez une durée--</option>
+              <option value='15'>15 minutes</option>
+              <option value='30'>30 minutes</option>
+              <option value='45'>45 minutes</option>
+              <option value='60'>1 heure</option>
+              <option value='90'>1 heure 30 minutes</option>
+              <option value='120'>2 heures</option>
+            </select><br>
     Patient: <select name='idPatient'>
         <option value='' selected disabled>Selectionner un patient</option>";
 while ($rowPatient = $resultPatients->fetch_assoc()) {
@@ -257,6 +232,7 @@ while ($rowMedecin = $resultMedecins->fetch_assoc()) {
 }
 echo "</select><br>
     <input type='submit' value='Ajouter'>
+    <input type='reset' value='Effacer'>
 </form>";
 
 // Fermer la connexion

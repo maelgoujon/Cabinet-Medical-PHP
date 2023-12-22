@@ -160,3 +160,32 @@ th {
 h2 {
   margin-top: 20px; /* Ajout d'une marge en haut du titre */
 }
+
+/* Ajoutez ces styles pour les sous-parties à votre fichier css.css */
+
+/* Ajoutez ces styles pour les sous-parties à votre fichier css.css */
+
+.sub-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  z-index: 1;
+  top: 100%; /* Positionnez les sous-parties en dessous de la rubrique parente */
+  left: 0;
+}
+
+.nav-item-with-submenu:hover .sub-menu {
+  display: block;
+}
+
+.nav-item-with-submenu {
+  position: relative; /* Assurez-vous que la position relative est définie sur la rubrique parente */
+}
+
+/* Ajoutez une marge pour séparer la rubrique et les sous-parties */
+.nav-item-with-submenu + .nav-item {
+  margin-left: 20px;
+}

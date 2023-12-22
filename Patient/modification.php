@@ -7,10 +7,11 @@ session_start();
 
 // Vérifier si l'utilisateur est authentifié
 if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-    header("Location: /Projet/projet_php/login.php");
+    header("Location: /Projet/projet_php/Base/login.php");
     exit();
 }
 
+include '../Base/header.php';
 ?>
     <title>Modification d'un patient</title>
 </head>

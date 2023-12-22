@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-  <?php
 
-session_start();
-
-// Vérifier si l'utilisateur est authentifié
-if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-    header("Location: /Projet/projet_php/login.php");
-    exit();
-}
-
-?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Statistiques</title>
@@ -184,37 +174,7 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
 
     <body>
 
-    <nav class="nav">
-      <a href="../index.html" class="nav-item is-active" active-color="orange"
-        >Accueil</a
-      >
-      <a
-        href="/Projet/projet_php/Patient/ajoutcontact.php"
-        class="nav-item"
-        active-color="green"
-        >Patient</a
-      >
-      <a
-        href="/Projet/projet_php/Medecin/ajoutmedecin.php"
-        class="nav-item"
-        active-color="blue"
-        >Medecin</a
-      >
-      <a
-        href="/Projet/projet_php/Consultations/index.php"
-        class="nav-item"
-        active-color="red"
-        >Consultations</a
-      >
-      <a
-        href="/Projet/projet_php/Stats/statistiques.php"
-        class="nav-item"
-        active-color="rebeccapurple"
-        >Statistiques</a
-      >
-      <a href="planning.php" class="nav-item" active-color="pink">Planning</a>
-      <span class="nav-indicator"></span>
-    </nav>
+    
 
 <?php
 $server = 'localhost';

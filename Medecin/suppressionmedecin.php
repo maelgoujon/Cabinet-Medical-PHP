@@ -7,7 +7,7 @@ session_start();
 
 // Vérifier si l'utilisateur est authentifié
 if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-    header("Location: /Projet/projet_php/login.php");
+    header("Location: /Projet/projet_php/Base/login.php");
     exit();
 }
 
@@ -184,37 +184,7 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
 
     <body>
 
-    <nav class="nav">
-      <a href="../index.html" class="nav-item is-active" active-color="orange"
-        >Accueil</a
-      >
-      <a
-        href="/Projet/projet_php/Patient/ajoutcontact.php"
-        class="nav-item"
-        active-color="green"
-        >Patient</a
-      >
-      <a
-        href="/Projet/projet_php/Medecin/ajoutmedecin.php"
-        class="nav-item"
-        active-color="blue"
-        >Medecin</a
-      >
-      <a
-        href="/Projet/projet_php/Consultations/index.php"
-        class="nav-item"
-        active-color="red"
-        >Consultations</a
-      >
-      <a
-        href="/Projet/projet_php/Stats/statistiques.php"
-        class="nav-item"
-        active-color="rebeccapurple"
-        >Statistiques</a
-      >
-      <a href="planning.php" class="nav-item" active-color="pink">Planning</a>
-      <span class="nav-indicator"></span>
-    </nav>
+    
     <?php
     // Connexion au serveur MySQL
     $server = 'localhost';
@@ -243,7 +213,7 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
         $linkpdo = null;
     
         // Redirection vers la page recherche.php après la suppression
-        header("Location: recherche.php");
+        header("Location: index.php");
     } catch (PDOException $e) {
         die('Erreur : ' . $e->getMessage());
     }

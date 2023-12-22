@@ -4,10 +4,11 @@ session_start();
 
 // Vérifier si l'utilisateur est authentifié
 if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-    header("Location: /Projet/projet_php/login.php");
+    header("Location: /Projet/projet_php/Base/login.php");
     exit();
 }
 
+include '../Base/header.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Statistiques</title>
+    <title>Medecin</title>
     <style>
         @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
 
@@ -185,71 +186,39 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
 
     <body>
 
-    <nav class="nav">
-      <a href="../index.html" class="nav-item is-active" active-color="orange"
-        >Accueil</a
-      >
-      <a
-        href="/Projet/projet_php/Patient/ajoutcontact.php"
-        class="nav-item"
-        active-color="green"
-        >Patient</a
-      >
-      <a
-        href="/Projet/projet_php/Medecin/ajoutmedecin.php"
-        class="nav-item"
-        active-color="blue"
-        >Medecin</a
-      >
-      <a
-        href="/Projet/projet_php/Consultations/index.php"
-        class="nav-item"
-        active-color="red"
-        >Consultations</a
-      >
-      <a
-        href="/Projet/projet_php/Stats/statistiques.php"
-        class="nav-item"
-        active-color="rebeccapurple"
-        >Statistiques</a
-      >
-      <a href="planning.php" class="nav-item" active-color="pink">Planning</a>
-      <span class="nav-indicator"></span>
-    </nav>
-
-
     <?php
-include 'config.php';
+      include '../Base/config.php';
 
-// Requête pour récupérer tous les médecins avec le nom des patients associés
-$sql = "SELECT m.Civilite, m.Prenom, m.Nom
-        FROM Medecin m";
+      // Requête pour récupérer tous les médecins avec le nom des patients associés
+      $sql = "SELECT m.idMedecin, m.Civilite, m.Prenom, m.Nom FROM Medecin m";
+      $result = $conn->query($sql);
 
-$result = $conn->query($sql);
+      // Affichage des médecins dans un tableau HTML
+      echo "<h2>Liste des médecins</h2>";
+      echo "<table border='1'>
+              <tr>
+                  <th>Civilité</th>
+                  <th>Prénom</th>
+                  <th>Nom</th>
+                  <th>Action</th>
+              </tr>";
 
-// Affichage des médecins dans un tableau HTML
-echo "<h2>Liste des médecins</h2>";
-echo "<table border='1'>
-    <tr>
-        <th>Civilité</th>
-        <th>Prénom</th>
-        <th>Nom</th>
-    </tr>";
+      while ($row = $result->fetch_assoc()) {
+          $civilite = ($row['Civilite'] == 1) ? 'Monsieur' : 'Madame';
+          echo "<tr>
+                  <td>{$civilite}</td>
+                  <td>{$row['Prenom']}</td>
+                  <td>{$row['Nom']}</td>
+                  <td><a href='modification.php?id={$row['idMedecin']}'>Modifier</a> | <a href='suppression.php?id={$row['idMedecin']}'>Supprimer</a></td>
+                </tr>";
+      }
 
-while ($row = $result->fetch_assoc()) {
-    $civilite = ($row['Civilite'] == 1) ? 'Monsieur' : 'Madame';
-    echo "<tr>
-        <td>{$civilite}</td>
-        <td>{$row['Prenom']}</td>
-        <td>{$row['Nom']}</td>
-    </tr>";
-}
+      echo "</table>";
 
-echo "</table>";
+      // Fermer la connexion
+      $conn->close();
+    ?>
 
-// Fermer la connexion
-$conn->close();
-?>
 
 <html>
     <a href="ajoutmedecin.php">

@@ -7,9 +7,11 @@ session_start();
 
 // Vérifier si l'utilisateur est authentifié
 if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-    header("Location: /Projet/projet_php/login.php");
+    header("Location: /Projet/projet_php/Base/login.php");
     exit();
 }
+
+include '../Base/header.php';
 
 ?>
     <meta charset="UTF-8" />
@@ -184,37 +186,7 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
 
     <body>
 
-    <nav class="nav">
-      <a href="../index.html" class="nav-item is-active" active-color="orange"
-        >Accueil</a
-      >
-      <a
-        href="/Projet/projet_php/Patient/ajoutcontact.php"
-        class="nav-item"
-        active-color="green"
-        >Patient</a
-      >
-      <a
-        href="/Projet/projet_php/Medecin/ajoutmedecin.php"
-        class="nav-item"
-        active-color="blue"
-        >Medecin</a
-      >
-      <a
-        href="/Projet/projet_php/Consultations/index.php"
-        class="nav-item"
-        active-color="red"
-        >Consultations</a
-      >
-      <a
-        href="/Projet/projet_php/Stats/statistiques.php"
-        class="nav-item"
-        active-color="rebeccapurple"
-        >Statistiques</a
-      >
-      <a href="planning.php" class="nav-item" active-color="pink">Planning</a>
-      <span class="nav-indicator"></span>
-    </nav>
+    
     <h1>Ajout d'un patient</h1>
     <div class="container">
     <?php
@@ -314,7 +286,6 @@ try {
 
             <input type="reset" value="Effacer">
             <input type="submit" value="Ajouter le patient">
-            <input type="button" value="Rechercher" onclick="window.location.href='recherche.php'">
         </form>
     </div>
 </body>

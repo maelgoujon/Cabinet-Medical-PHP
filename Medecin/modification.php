@@ -8,9 +8,10 @@
 
       // Vérifier si l'utilisateur est authentifié
       if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-          header("Location: /Projet/projet_php/login.php");
+          header("Location: /Projet/projet_php/Base/login.php");
           exit();
       }
+      include '../Base/header.php';
 
     ?>
     <title>Modification d'un medecin</title>
@@ -77,20 +78,34 @@
 
         <form method="post" action="modification.php">
           <h1>Modification d'un medecin</h1>
-            <?php
+          <?php
             if ($stmt->rowCount() > 0) {
                 echo '<p style="color: green;">' . $validationMessage . '</p>';
-                include 'form_medecin.php';
+                ?>
+                <form method="post" action="modification.php">
+                    <!-- Ajouter les valeurs par défaut dans les champs -->
+                    <input type="hidden" name="idMedecin" value="<?php echo isset($medecin['idMedecin']) ? $medecin['idMedecin'] : ''; ?>">
+                    <label for="civilite">Civilité:</label>
+                    <input type="text" name="civilite" value="<?php echo isset($medecin['Civilite']) ? $medecin['Civilite'] : ''; ?>"><br>
+
+                    <label for="prenom">Prénom:</label>
+                    <input type="text" name="prenom" value="<?php echo isset($medecin['Prenom']) ? $medecin['Prenom'] : ''; ?>"><br>
+
+                    <label for="nom">Nom:</label>
+                    <input type="text" name="nom" value="<?php echo isset($medecin['Nom']) ? $medecin['Nom'] : ''; ?>"><br>
+
+                    <input type="button" value="Retour" onclick="history.back()">
+                    <input type="submit" value="Modifier le medecin">
+                    <a href="/../Projet/projet_php/index.php">
+                        <input type="button" value="Accueil">
+                    </a>
+                </form>
+            <?php
             } else {
                 echo "Medecin non trouve.";
             }
             ?>
-            <input type="hidden" name="idMedecin" value="<?php echo isset($medecin['idMedecin']) ? $medecin['idMedecin'] : ''; ?>">
-            <input type="button" value="Retour" onclick="history.back()">
-            <input type="submit" value="Modifier le medecin">
-            <a href="/../Projet/projet_php/index.html">
-                <input type="button" value="Accueil">
-            </a>
+
         </form>
 
         

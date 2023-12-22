@@ -7,9 +7,11 @@ session_start();
 
 // Vérifier si l'utilisateur est authentifié
 if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-    header("Location: /Projet/projet_php/login.php");
+    header("Location: /Projet/projet_php/Base/login.php");
     exit();
 }
+
+include '../Base/header.php';
 
 ?>
     <meta charset="UTF-8" />
@@ -180,86 +182,21 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
     }
 
     </style>
+    <script>
+            function confirmDelete() {
+                if (confirm("Êtes-vous sûr de vouloir supprimer cette consultation ?")) {
+                    // Si l'utilisateur confirme la suppression, rediriger vers suppressioncontact.php
+                    window.location.href = 'suppressionconsultation.php?id=<?php echo $_GET['id']; ?>';
+                }
+            }
+        </script>
   </head>
 
     <body>
 
-    <nav class="nav">
-      <a href="../index.html" class="nav-item is-active" active-color="orange"
-        >Accueil</a
-      >
-      <a
-        href="/Projet/projet_php/Patient/ajoutcontact.php"
-        class="nav-item"
-        active-color="green"
-        >Patient</a
-      >
-      <a
-        href="/Projet/projet_php/Medecin/ajoutmedecin.php"
-        class="nav-item"
-        active-color="blue"
-        >Medecin</a
-      >
-      <a
-        href="/Projet/projet_php/Consultations/index.php"
-        class="nav-item"
-        active-color="red"
-        >Consultations</a
-      >
-      <a
-        href="/Projet/projet_php/Stats/statistiques.php"
-        class="nav-item"
-        active-color="rebeccapurple"
-        >Statistiques</a
-      >
-      <a href="planning.php" class="nav-item" active-color="pink">Planning</a>
-      <span class="nav-indicator"></span>
-    </nav>
-<?php
-// Connexion au serveur MySQL
-$server = 'localhost';
-$db = 'php_project';
-$login = "etu";
-$mdp = "\$iutinfo";
-
-try {
-    $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
-    // Definition du mode d'erreur PDO à exception
-    $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Recuperation des donnees du formulaire HTML
-    $idPatient = $_POST['idPatient'];
-    $civilite = $_POST['civilite'];
-    $prenom = $_POST['prenom'];
-    $nom = $_POST['nom'];
-    $adresse = $_POST['adresse'];
-    $date_de_naissance = $_POST['date_de_naissance'];
-    $lieu_de_naissance = $_POST['lieu_de_naissance'];
-    $numero_securite_sociale = $_POST['numero_securite_sociale'];
-    $idMedecin = $_POST['idMedecin'];
-
-    // Requête SQL d'insertion
-    $sql = "INSERT INTO patient (`Civilite`, `Prenom`, `Nom`, `Adresse`, `Date_de_naissance`, `Lieu_de_naissance`, `Numero_Securite_Sociale`, `idMedecin`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-    // Preparation de la requête
-    $stmt = $linkpdo->prepare($sql);
-
-    // Execution de la requête avec les donnees du formulaire
-    $stmt->execute([$civilite, $prenom, $nom, $adresse, $date_de_naissance, $lieu_de_naissance, $numero_securite_sociale, $idMedecin]);
-
-    // Verification de l'insertion
-    if ($stmt->rowCount() > 0) {
-        echo "Le patient a ete modifie avec succes. <br>";
-        // Bouton "Accueil" pour revenir à la page HTML de base
-        echo '<a href="ajoutcontact.php">Accueil</a>';
-    } else {
-        echo "Une erreur s'est produite lors de l'ajout du patient.";
-    }
-
-    // Fermeture de la connexion à la base de donnees
-    $linkpdo = null;
-} catch (PDOException $e) {
-    die('Erreur : ' . $e->getMessage());
-}
-?>
+    
+    <h1>Confirmation de suppression</h1>
+    <p>Voulez-vous vraiment supprimer cette consultation ?</p>
+    <button onclick="confirmDelete()">Confirmer la suppression</button>
+</body>
 </html>

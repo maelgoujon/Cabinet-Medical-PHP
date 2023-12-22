@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-
   <?php
 
-      session_start();
+session_start();
 
-      // Vérifier si l'utilisateur est authentifié
-      if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-          header("Location: /Projet/projet_php/login.php");
-          exit();
-      }
+// Vérifier si l'utilisateur est authentifié
+if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
+    header("Location: /Projet/projet_php/Base/login.php");
+    exit();
+}
 
-    ?>
+?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Statistiques</title>
@@ -185,77 +184,39 @@
 
     <body>
 
-    <nav class="nav">
-      <a href="../index.html" class="nav-item is-active" active-color="orange"
-        >Accueil</a
-      >
-      <a
-        href="/Projet/projet_php/Patient/ajoutcontact.php"
-        class="nav-item"
-        active-color="green"
-        >Patient</a
-      >
-      <a
-        href="/Projet/projet_php/Medecin/ajoutmedecin.php"
-        class="nav-item"
-        active-color="blue"
-        >Medecin</a
-      >
-      <a
-        href="/Projet/projet_php/Consultations/index.php"
-        class="nav-item"
-        active-color="red"
-        >Consultations</a
-      >
-      <a
-        href="/Projet/projet_php/Stats/statistiques.php"
-        class="nav-item"
-        active-color="rebeccapurple"
-        >Statistiques</a
-      >
-      <a href="planning.php" class="nav-item" active-color="pink">Planning</a>
-      <span class="nav-indicator"></span>
-    </nav>
-<?php
-// Connexion au serveur MySQL
-$server = 'localhost';
-$db = 'php_project';
-$login = "etu";
-$mdp = "\$iutinfo";
+    
+    <?php
+    // Connexion au serveur MySQL
+    $server = 'localhost';
+    $db = 'PHP_Project';
+    $login = "etu";
+    $mdp = "\$iutinfo";
 
-try {
-    $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
-    // Definition du mode d'erreur PDO à exception
-    $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Recuperation des donnees du formulaire HTML
-    $idMedecin = $_POST['idMedecin'];
-    $civilite = $_POST['civilite'];
-    $prenom = $_POST['prenom'];
-    $nom = $_POST['nom'];
-
-    // Requête SQL d'insertion
-    $sql = "INSERT INTO medecin (`Civilite`, `Prenom`, `Nom`) VALUES (?, ?, ?)";
-
-    // Preparation de la requête
-    $stmt = $linkpdo->prepare($sql);
-
-    // Execution de la requête avec les donnees du formulaire
-    $stmt->execute([$civilite, $prenom, $nom]);
-
-    // Verification de l'insertion
-    if ($stmt->rowCount() > 0) {
-        echo "Le medecin a ete modifie avec succes. <br>";
-        // Bouton "Accueil" pour revenir à la page HTML de base
-        echo '<a href="ajoutmedecin.php">Accueil</a>';
-    } else {
-        echo "Une erreur s'est produite lors de l'ajout du patient.";
+    try {
+        $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
+        // Définition du mode d'erreur PDO à exception
+        $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+        // Récupération de l'identifiant du contact à supprimer depuis l'URL
+        $idConsultation = $_GET['id'];
+    
+        // Requête SQL pour supprimer le contact
+        $sql = "DELETE FROM consultations WHERE idConsultation = ?";
+        
+        // Préparation de la requête
+        $stmt = $linkpdo->prepare($sql);
+    
+        // Exécution de la requête avec l'identifiant du contact
+        $stmt->execute([$idConsultation]);
+    
+        // Fermeture de la connexion à la base de données
+        $linkpdo = null;
+    
+        // Redirection vers la page recherche.php après la suppression
+        header("Location: index.php");
+    } catch (PDOException $e) {
+        die('Erreur : ' . $e->getMessage());
     }
-
-    // Fermeture de la connexion à la base de donnees
-    $linkpdo = null;
-} catch (PDOException $e) {
-    die('Erreur : ' . $e->getMessage());
-}
-?>
+    ?>
+</body>
 </html>

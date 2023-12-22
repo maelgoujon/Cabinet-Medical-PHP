@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Authentification réussie, rediriger vers la page d'accueil
         // Authentification réussie
         $_SESSION["authenticated"] = true;
-        header("Location: index.html");
+        header("Location: index.php");
         exit();
     } else {
         // Authentification échouée, afficher un message d'erreur
