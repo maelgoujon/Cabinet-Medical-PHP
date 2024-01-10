@@ -80,7 +80,6 @@
         </nav>
     </header>
 
-    <!-- Le reste de votre contenu va ici -->
 
 </body>
 </html>

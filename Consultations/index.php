@@ -191,12 +191,39 @@ include '../Base/header.php';
 <?php
     include '../Base/config.php';
 
-// Requête pour récupérer les consultations avec les noms des médecins et patients triées par ordre chronologique descendant
+// 1. Requête pour récupérer la liste des médecins
+$sqlMedecins = "SELECT idMedecin, Nom, Prenom FROM Medecin";
+$resultMedecins = $conn->query($sqlMedecins);
+?>
+
+<!-- 2. Formulaire avec menu déroulant pour filtrer par médecin -->
+<form action="" method="GET">
+  <label for="medecin">Filtrer par médecin :</label>
+  <select name="medecin" id="medecin">
+    <option value="">Tous les médecins</option>
+    <?php
+    while ($rowMedecin = $resultMedecins->fetch_assoc()) {
+      echo "<option value=\"{$rowMedecin['idMedecin']}\">{$rowMedecin['Nom']} {$rowMedecin['Prenom']}</option>";
+    }
+    ?>
+  </select>
+  <input type="submit" value="Filtrer">
+</form>
+
+<?php
+// 3. Modification de la requête principale en fonction de la sélection du menu déroulant
+$filterMedecin = isset($_GET['medecin']) ? $_GET['medecin'] : null;
+
 $sql = "SELECT c.idConsultation, c.DateConsultation, c.Heure, c.Duree, m.Nom AS NomMedecin, m.Prenom AS PrenomMedecin, p.Nom AS NomPatient, p.Prenom AS PrenomPatient
-        FROM Consultations c
-        JOIN Medecin m ON c.idMedecin = m.idMedecin
-        JOIN Patient p ON c.idPatient = p.idPatient
-        ORDER BY c.DateConsultation DESC";
+      FROM Consultations c
+      JOIN Medecin m ON c.idMedecin = m.idMedecin
+      JOIN Patient p ON c.idPatient = p.idPatient";
+
+if ($filterMedecin) {
+  $sql .= " WHERE m.idMedecin = $filterMedecin";
+}
+
+$sql .= " ORDER BY c.DateConsultation DESC";
 
 $result = $conn->query($sql);
 
