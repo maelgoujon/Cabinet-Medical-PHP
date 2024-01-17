@@ -26,29 +26,29 @@
 
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light custom-header">
-        <img class="navbar-brand" src="../Images/logo.png" href="#" alt="Logo" height="50"></img>
+        <img class="navbar-brand" src="Images/logo.png" href="#" alt="Logo" height="50"></img>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="../">Accueil</a>
+                <a class="nav-link" href="">Accueil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../Patient/">Patient</a>
+                <a class="nav-link" href="Patient/">Patient</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../Medecin/">Medecin</a>
+                <a class="nav-link" href="Medecin/">Medecin</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../Consultations/">Consultations</a>
+                <a class="nav-link" href="Consultations/">Consultations</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../Stats/statistiques.php">Statistiques</a>
+                <a class="nav-link" href="Stats/statistiques.php">Statistiques</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link logout-btn" href="../Base/logout.php">Se déconnecter</a>
+                <a class="nav-link logout-btn" href="Base/logout.php">Se déconnecter</a>
             </li>
             
             </ul>

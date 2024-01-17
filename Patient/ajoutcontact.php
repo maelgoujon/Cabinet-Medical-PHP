@@ -16,7 +16,7 @@ include '../Base/header.php';
 ?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Statistiques</title>
+    <title>Ajout d'un patient</title>
     <!-- Ajoutez les liens vers les fichiers CSS Bootstrap ici -->
     <link href="../Base/bootstrap.min.css" rel="stylesheet" />
     <link href="../Base/accueil.css" rel="stylesheet" />

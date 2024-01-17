@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+include '/Base/header_accueil.php';
 
 session_start();
 
@@ -18,13 +18,13 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
     <!-- Ajoutez les liens vers les fichiers CSS Bootstrap ici -->
-    <link href="../Base/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Base/accueil.css" rel="stylesheet" />
-    <link href="../Base/style.css" rel="stylesheet" />
+    <link href="Base/bootstrap.min.css" rel="stylesheet" />
+    <link href="Base/accueil.css" rel="stylesheet" />
+    <link href="Base/style.css" rel="stylesheet" />
     <!-- Ajoutez les liens vers les fichiers JavaScript Bootstrap et jQuery ici -->
-    <script src="../Base/jquery-3.2.1.slim.min.js"></script>
-    <script src="../Base/popper.min.js"></script>
-    <script src="../Base/bootstrap.bundle.min.js"></script>
+    <script src="Base/jquery-3.2.1.slim.min.js"></script>
+    <script src="Base/popper.min.js"></script>
+    <script src="Base/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -35,14 +35,14 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
 
         <div class="container row shadow-lg">
             <div class="col-md-3">
-                <img src="../Images/patient.png" alt="Logo" width="150" height="150"/>
+                <img src="Images/patient.png" alt="Logo" width="150" height="150"/>
             </div>
             <div class="col-md-9">
                 <h3>Liste des patients</h3>
                 <p>
                     Cliquez ici pour voir la liste des patients :
                     <br />
-                    <a href="../Patient/">Patients</a>
+                    <a href="Patient/">Patients</a>
                 </p>
             </div>
         </div>
@@ -50,14 +50,14 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
 
         <div class="container row shadow-lg">
             <div class="col-md-3">
-                <img src="../Images/docteur.png" alt="Logo" width="150" height="150"/>
+                <img src="Images/docteur.png" alt="Logo" width="150" height="150"/>
             </div>
             <div class="col-md-9">
                 <h3>Liste des médecins</h3>
                 <p>
                     Cliquez ici pour voir la liste des médeicns :
                     <br />
-                    <a href="../Medecin/">Médecins</a>
+                    <a href="Medecin/">Médecins</a>
                 </p>
             </div>
         </div>
@@ -65,14 +65,14 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
 
         <div class="container row shadow-lg">
             <div class="col-md-3">
-                <img src="../Images/consult.png" alt="Logo" width="150" height="150"/>
+                <img src="Images/consult.png" alt="Logo" width="150" height="150"/>
             </div>
             <div class="col-md-9">
                 <h3>Voir vos consultaions</h3>
                 <p>
                     Découvrez vos consultations :
                     <br />
-                    <a href="../Consultations/">Consultations</a>
+                    <a href="Consultations/">Consultations</a>
                 </p>
             </div>
         </div>
@@ -80,14 +80,14 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
 
         <div class="container row shadow-lg">
             <div class="col-md-3">
-                <img src="../Images/stat.png" alt="Logo" width="150" height="150"/>
+                <img src="Images/stat.png" alt="Logo" width="150" height="150"/>
             </div>
             <div class="col-md-9">
                 <h3>Statistiques</h3>
                 <p>
                     Sur cette page découvrez quelques statistiques concernenant vôtre cabinet médical :
                     <br />
-                    <a href="../Stats/statistiques.php">Statistiques</a>
+                    <a href="Stats/statistiques.php">Statistiques</a>
                 </p>
             </div>
         </div>

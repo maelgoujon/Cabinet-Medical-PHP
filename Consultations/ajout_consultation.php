@@ -24,7 +24,7 @@
 <script src="../Base/jquery-3.2.1.slim.min.js"></script>
 <script src="../Base/popper.min.js"></script>
 <script src="../Base/bootstrap.bundle.min.js"></script>
-<title>Statistiques</title>
+<title>Ajout d'une consultation</title>
 
 </head>
 
@@ -91,14 +91,13 @@
                     }
     echo "</select></div>
             </div>
-            <div class='row'>
-                <div class='col-md-6'>
-                    <button type='submit' class='btn btn-primary'>Ajouter</button>
+            <div class='mb-3'>
+                    <input type='submit' value='Ajouter la consultation' class='btn btn-primary'>
+                    <input type='button' value='Retour' onclick='history.back()' class='btn btn-warning'>
+                    <a href='../Consultations/'>
+                        <button type='button'  class='btn btn-danger'>Accueil Consultations</button>
+                    </a>
                 </div>
-                <div class='col-md-6'>
-                    <button type='reset' class='btn btn-danger'>Effacer</button>
-                </div>
-            </div>
         </form>";
 
     // Fermer la connexion
