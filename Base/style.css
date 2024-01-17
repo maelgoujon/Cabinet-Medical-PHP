@@ -1,0 +1,33 @@
+.btn-primary {
+    background-color: blueviolet;
+    border-color: blueviolet;
+}
+
+.btn-primary:hover{
+    background-color: rgb(115, 15, 209);
+    border-color: rgb(115, 15, 209);
+}
+
+.btn-warning{
+    background-color: #f9c784;
+    border-color: #f9c784;
+}
+
+.btn-warning:hover{
+    background-color: #f8b358;
+    border-color: #f8b358;
+}
+
+.btn-success{
+    background-color: #72d959;
+    border-color: #72d959;
+}
+
+.btn-success:hover{
+    background-color: #6ab070;
+    border-color: #6ab070;
+}
+
+.success-message {
+    color: green;
+}

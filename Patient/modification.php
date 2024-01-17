@@ -14,6 +14,14 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
 include '../Base/header.php';
 ?>
     <title>Modification d'un patient</title>
+    <!-- Ajoutez les liens vers les fichiers CSS Bootstrap ici -->
+    <link href="../Base/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Base/accueil.css" rel="stylesheet" />
+    <link href="../Base/style.css" rel="stylesheet" />
+    <!-- Ajoutez les liens vers les fichiers JavaScript Bootstrap et jQuery ici -->
+    <script src="../Base/jquery-3.2.1.slim.min.js"></script>
+    <script src="../Base/popper.min.js"></script>
+    <script src="../Base/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <h1>Modification d'un patient</h1>
@@ -80,21 +88,82 @@ include '../Base/header.php';
         }
         ?>
 
-        <form method="post" action="modification.php">
+        <form method="post" action="modification.php" class="container mt-5">
             <?php
             if ($stmt->rowCount() > 0) {
-                echo '<p style="color: green;">' . $validationMessage . '</p>';
-                include 'form_patient.php';
+                echo '<p class="text-success">' . $validationMessage . '</p>';
+                ?>
+                <form>
+                    <input type="hidden" name="idPatient" value="<?php echo isset($patient['idPatient']) ? $patient['idPatient'] : ''; ?>">
+
+                    <div class="mb-3">
+                        <label for="civilite" class="form-label">Civilité:</label>
+                        <select name="civilite" class="form-select">
+                            <option value="1" <?php echo (isset($patient['Civilite']) && $patient['Civilite'] == 1) ? 'selected' : ''; ?>>Monsieur</option>
+                            <option value="2" <?php echo (isset($patient['Civilite']) && $patient['Civilite'] == 2) ? 'selected' : ''; ?>>Madame</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="prenom" class="form-label">Prénom:</label>
+                        <input type="text" name="prenom" value="<?php echo isset($patient['Prenom']) ? $patient['Prenom'] : ''; ?>" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nom" class="form-label">Nom:</label>
+                        <input type="text" name="nom" value="<?php echo isset($patient['Nom']) ? $patient['Nom'] : ''; ?>" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="adresse" class="form-label">Adresse:</label>
+                        <input type="text" name="adresse" value="<?php echo isset($patient['Adresse']) ? $patient['Adresse'] : ''; ?>" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="date_de_naissance" class="form-label">Date de naissance :</label>
+                        <input type="date" name="date_de_naissance" value="<?php echo isset($patient['Date_de_naissance']) ? $patient['Date_de_naissance'] : ''; ?>" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lieu_de_naissance" class="form-label">Lieu de naissance :</label>
+                        <input type="text" name="lieu_de_naissance" value="<?php echo isset($patient['Lieu_de_naissance']) ? $patient['Lieu_de_naissance'] : ''; ?>" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="numero_securite_sociale" class="form-label">Numéro de sécurité sociale :</label>
+                        <input type="text" name="numero_securite_sociale" value="<?php echo isset($patient['Numero_Securite_Sociale']) ? $patient['Numero_Securite_Sociale'] : ''; ?>" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="medecin_referent" class="form-label">Médecin référent :</label>
+                        <select name="idMedecin" class="form-select">
+                            <?php
+                            // Récupérer la liste des médecins depuis la base de données
+                            $sqlDoctors = "SELECT * FROM medecin";
+                            $stmtDoctors = $linkpdo->query($sqlDoctors);
+                            $doctors = $stmtDoctors->fetchAll(PDO::FETCH_ASSOC);
+
+                            // Remplir les options dans l'élément select
+                            foreach ($doctors as $doctor) {
+                                $selected = (isset($patient['idMedecin']) && $patient['idMedecin'] == $doctor['idMedecin']) ? 'selected' : '';
+                                echo "<option value='{$doctor['idMedecin']}' $selected>{$doctor['Nom']} {$doctor['Prenom']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <input type="hidden" name="idPatient" value="<?php echo isset($patient['idPatient']) ? $patient['idPatient'] : ''; ?>">
+                    <button type="button" onclick="history.back()" class="btn btn-danger">Retour</button>
+                    <button type="submit" class="btn btn-primary">Modifier le patient</button>
+                    <a href="../Patient">
+                        <button type="button" class="btn btn-warning">Accueil Patient</button>
+                    </a>
+                </form>
+            <?php
             } else {
-                echo "Patient non trouve.";
+                echo "Patient non trouvé.";
             }
             ?>
-            <input type="hidden" name="idPatient" value="<?php echo isset($patient['idPatient']) ? $patient['idPatient'] : ''; ?>">
-            <input type="button" value="Retour" onclick="history.back()">
-            <input type="submit" value="Modifier le patient">
-            <a href="ajoutcontact.php">
-                <input type="button" value="Accueil">
-            </a>
         </form>
 
         

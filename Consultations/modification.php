@@ -15,6 +15,14 @@
 
     ?>
     <title>Modification d'une consultation</title>
+    <!-- Ajoutez les liens vers les fichiers CSS Bootstrap ici -->
+    <link href="../Base/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Base/accueil.css" rel="stylesheet" />
+    <link href="../Base/style.css" rel="stylesheet" />
+    <!-- Ajoutez les liens vers les fichiers JavaScript Bootstrap et jQuery ici -->
+    <script src="../Base/jquery-3.2.1.slim.min.js"></script>
+    <script src="../Base/popper.min.js"></script>
+    <script src="../Base/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -76,46 +84,55 @@
         ?>
 
 
-        <form method="post" action="modification.php">
-          <h1>Modification d'un consultation</h1>
-          <?php
+        <form method="post" action="modification.php" class="container mt-5">
+            <h1 class="mb-4">Modification d'une consultation</h1>
+
+            <?php
             if ($stmt->rowCount() > 0) {
                 echo '<p style="color: green;">' . $validationMessage . '</p>';
-                ?>
+            ?>
                 <form method="post" action="modification.php">
                     <!-- Ajouter les valeurs par défaut dans les champs -->
                     <input type="hidden" name="idConsultation" value="<?php echo isset($consultation['idConsultation']) ? $consultation['idConsultation'] : ''; ?>">
-                    <label for="dateConsultation">Date de la consultation :</label>
-                    <input type="date" name="dateConsultation" value="<?php echo isset($consultation['DateConsultation']) ? $consultation['DateConsultation'] : ''; ?>"><br>
 
-                    <label for="heure">Heure :</label>
-                    <input type="time" name="heure" value="<?php echo isset($consultation['Heure']) ? $consultation['Heure'] : ''; ?>"><br>
+                    <div class="mb-3">
+                        <label for="dateConsultation" class="form-label">Date de la consultation :</label>
+                        <input type="date" name="dateConsultation" style="width: auto;" class="form-control form-control-sm" value="<?php echo isset($consultation['DateConsultation']) ? $consultation['DateConsultation'] : ''; ?>">
+                    </div>
 
-                    <label for="duree">Duree:</label>
-                    <select name="duree" value="<?php echo isset($consultation['Duree']) ? $consultation['Duree'] : ''; ?>">
-                        <option value=''>--Choisissez une durée--</option>
-                        <option value='15'>15 minutes</option>
-                        <option value='30'>30 minutes</option>
-                        <option value='45'>45 minutes</option>
-                        <option value='60'>1 heure</option>
-                        <option value='90'>1 heure 30 minutes</option>
-                        <option value='120'>2 heures</option>
-                    </select><br>
+                    <div class="mb-3">
+                        <label for="heure" class="form-label">Heure :</label>
+                        <input type="time" style="width: auto;" name="heure" class="form-control form-control-sm" value="<?php echo isset($consultation['Heure']) ? $consultation['Heure'] : ''; ?>">
+                    </div>
 
-                    <input type="button" value="Retour" onclick="history.back()">
-                    <input type="submit" value="Modifier la consultation">
-                    <a href="/../Projet/projet_php/index.php">
-                        <input type="button" value="Accueil">
-                    </a>
+                    <div class="mb-3">
+                        <label for="duree" class="form-label">Durée :</label>
+                        <select name="duree" style="width: auto;" class="form-select form-select-sm">
+                            <option value=''>--Choisissez une durée--</option>
+                            <option value='15'>15 minutes</option>
+                            <option value='30'>30 minutes</option>
+                            <option value='45'>45 minutes</option>
+                            <option value='60'>1 heure</option>
+                            <option value='90'>1 heure 30 minutes</option>
+                            <option value='120'>2 heures</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="button" value="Retour" onclick="history.back()" class="btn btn-warning">
+                        <input type="submit" value="Modifier la consultation" class="btn btn-primary">
+                        <a href="../Consultations">
+                            <button type="button" class="btn btn-danger">Accueil Consultations</button>
+                        </a>
+                    </div>
                 </form>
             <?php
             } else {
-                echo "Consultation non trouve.";
+                echo "Consultation non trouvée.";
             }
             ?>
 
         </form>
-
         
     </div>
 </body>

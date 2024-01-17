@@ -26,17 +26,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../Base/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../Base/accueil.css" rel="stylesheet"/>
+    <link href="../Base/style.css" rel="stylesheet"/>
+    <script src="../Base/jquery-3.2.1.slim.min.js"></script>
+    <script src="../Base/popper.min.js"></script>
+    <script src="../Base/bootstrap.bundle.min.js"></script>
     <title>Authentification</title>
 </head>
-<body>
-    <h2>Authentification</h2>
-    <?php if (isset($error_message)) { ?>
-        <p style="color: red;"><?php echo $error_message; ?></p>
-    <?php } ?>
-    <form method="post" action="">
-        <label>Nom d'utilisateur: <input type="text" name="username"></label><br>
-        <label>Mot de passe: <input type="password" name="password"></label><br>
-        <input type="submit" value="Se connecter">
-    </form>
+<body> <!-- Ajout de la classe container -->
+    <div class="container">
+        <div class="text-center"> <!-- Centrer le contenu -->
+            <h2 class="mt-5">Authentification</h2>
+            <?php if (isset($error_message)) { ?>
+                <div class="alert alert-danger"><?php echo $error_message; ?></div>
+            <?php } ?>
+            <form method="post" action="">
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="username">Nom d'utilisateur :</label>
+                    <input type="text" name="username" class="form-control" />
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="password">Mot de passe :</label>
+                    <input type="password" name="password" class="form-control" />
+                </div>
+                <br>
+                <input type="submit" value="Se connecter" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>
+

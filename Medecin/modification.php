@@ -15,6 +15,14 @@
 
     ?>
     <title>Modification d'un medecin</title>
+    <!-- Ajoutez les liens vers les fichiers CSS Bootstrap ici -->
+    <link href="../Base/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Base/accueil.css" rel="stylesheet" />
+    <link href="../Base/style.css" rel="stylesheet" />
+    <!-- Ajoutez les liens vers les fichiers JavaScript Bootstrap et jQuery ici -->
+    <script src="../Base/jquery-3.2.1.slim.min.js"></script>
+    <script src="../Base/popper.min.js"></script>
+    <script src="../Base/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -76,38 +84,46 @@
         ?>
 
 
-        <form method="post" action="modification.php">
-          <h1>Modification d'un medecin</h1>
-          <?php
+        <form method="post" action="modification.php" class="container mt-5">
+            <h1 class="mb-4">Modification d'un médecin</h1>
+            <?php
             if ($stmt->rowCount() > 0) {
-                echo '<p style="color: green;">' . $validationMessage . '</p>';
+                echo '<p class="text-success">' . $validationMessage . '</p>';
                 ?>
                 <form method="post" action="modification.php">
                     <!-- Ajouter les valeurs par défaut dans les champs -->
                     <input type="hidden" name="idMedecin" value="<?php echo isset($medecin['idMedecin']) ? $medecin['idMedecin'] : ''; ?>">
-                    <label for="civilite">Civilité:</label>
-                    <input type="text" name="civilite" value="<?php echo isset($medecin['Civilite']) ? $medecin['Civilite'] : ''; ?>"><br>
 
-                    <label for="prenom">Prénom:</label>
-                    <input type="text" name="prenom" value="<?php echo isset($medecin['Prenom']) ? $medecin['Prenom'] : ''; ?>"><br>
+                    <div class="mb-3">
+                        <label for="civilite" class="form-label">Civilité:</label>
+                        <select name="civilite" class="form-select">
+                            <option value="1" <?php echo (isset($medecin['Civilite']) && $medecin['Civilite'] == 1) ? 'selected' : ''; ?>>Monsieur</option>
+                            <option value="2" <?php echo (isset($medecin['Civilite']) && $medecin['Civilite'] == 2) ? 'selected' : ''; ?>>Madame</option>
+                        </select>
+                    </div>
 
-                    <label for="nom">Nom:</label>
-                    <input type="text" name="nom" value="<?php echo isset($medecin['Nom']) ? $medecin['Nom'] : ''; ?>"><br>
+                    <div class="mb-3">
+                        <label for="prenom" class="form-label">Prénom:</label>
+                        <input type="text" name="prenom" value="<?php echo isset($medecin['Prenom']) ? $medecin['Prenom'] : ''; ?>" class="form-control">
+                    </div>
 
-                    <input type="button" value="Retour" onclick="history.back()">
-                    <input type="submit" value="Modifier le medecin">
-                    <a href="/../Projet/projet_php/index.php">
-                        <input type="button" value="Accueil">
+                    <div class="mb-3">
+                        <label for="nom" class="form-label">Nom:</label>
+                        <input type="text" name="nom" value="<?php echo isset($medecin['Nom']) ? $medecin['Nom'] : ''; ?>" class="form-control">
+                    </div>
+
+                    <button type="button" onclick="history.back()" class="btn btn-warning">Retour</button>
+                    <button type="submit" class="btn btn-primary">Modifier le médecin</button>
+                    <a href="../Medecin">
+                        <button type="button" class="btn btn-danger">Accueil Médecin</button>
                     </a>
                 </form>
-            <?php
+                <?php
             } else {
-                echo "Medecin non trouve.";
+                echo "Médecin non trouvé.";
             }
             ?>
-
         </form>
-
         
     </div>
 </body>
