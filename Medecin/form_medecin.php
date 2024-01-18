@@ -13,10 +13,7 @@
     
 
 <?php
-$server = 'localhost';
-$db = 'php_project';
-$login = "etu";
-$mdp = "\$iutinfo";
+include'../Base/config.php';
 
 $sqlMedecin = "SELECT idMedecin, Nom FROM Medecin";
 $stmtMedecin = $linkpdo->query($sqlMedecin);

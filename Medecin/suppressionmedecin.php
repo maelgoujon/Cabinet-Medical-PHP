@@ -23,10 +23,7 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
     
     <?php
     // Connexion au serveur MySQL
-    $server = 'localhost';
-    $db = 'PHP_Project';
-    $login = "etu";
-    $mdp = "\$iutinfo";
+    include'../Base/config.php';
 
     try {
         $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);

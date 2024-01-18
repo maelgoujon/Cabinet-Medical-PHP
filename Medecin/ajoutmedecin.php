@@ -33,10 +33,7 @@ include '../Base/header.php';
     <div class="container mt-5">
         <h1 class="mb-4">Ajout d'un médecin</h1>
         <?php
-        $server = 'localhost';
-        $db = 'php_project';
-        $login = "etu";
-        $mdp = "\$iutinfo";
+        include'../Base/config.php';
 
         try {
             $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
