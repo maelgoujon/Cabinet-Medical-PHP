@@ -56,20 +56,20 @@ include '../Base/header.php';
                         <th>Action</th>
                     </tr>";
 
-                while ($row = $result->fetch_assoc()) {
-                    $civilite = ($row['Civilite'] == 1) ? 'Monsieur' : 'Madame';
-                    echo "<tr>
-                        <td>{$civilite}</td>
-                        <td>{$row['Prenom']}</td>
-                        <td>{$row['Nom']}</td>
-                        <td>{$row['Adresse']}</td>
-                        <td>{$row['Date_de_naissance']}</td>
-                        <td>{$row['Lieu_de_naissance']}</td>
-                        <td>{$row['Numero_Securite_Sociale']}</td>
-                        <td>{$row['NomMedecin']} {$row['PrenomMedecin']}</td>
-                        <td><a href='modification.php?id={$row['idPatient']}' class='btn btn-warning btn-sm'>Modifier</a> | <a href='suppression.php?id={$row['idPatient']}' class='btn btn-danger btn-sm'>Supprimer</a></td>
-                    </tr>";
-                }
+                    while ($row = $result->fetch_assoc()) {
+                        $civilite = ($row['Civilite'] == 1) ? 'Monsieur' : 'Madame';
+                        echo "<tr>
+                                <td>{$civilite}</td>
+                                <td>{$row['Prenom']}</td>
+                                <td>{$row['Nom']}</td>
+                                <td>{$row['Adresse']}</td>
+                                <td>" . date('d/m/Y', strtotime($row['Date_de_naissance'])) . "</td>
+                                <td>{$row['Lieu_de_naissance']}</td>
+                                <td>{$row['Numero_Securite_Sociale']}</td>
+                                <td>{$row['NomMedecin']} {$row['PrenomMedecin']}</td>
+                                <td><a href='modification.php?id={$row['idPatient']}' class='btn btn-warning btn-sm'>Modifier</a> | <a href='suppression.php?id={$row['idPatient']}' class='btn btn-danger btn-sm'>Supprimer</a></td>
+                              </tr>";
+                    }
 
                 echo "</table>";
 

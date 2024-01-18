@@ -89,16 +89,16 @@ include '../Base/header.php';
               </thead>
               <tbody>";
 
-      while ($row = $result->fetch_assoc()) {
-          echo "<tr>
-                  <td>{$row['DateConsultation']}</td>
-                  <td>{$row['Heure']}</td>
-                  <td>{$row['Duree']}</td>
-                  <td>{$row['NomMedecin']} {$row['PrenomMedecin']}</td>
-                  <td>{$row['NomPatient']} {$row['PrenomPatient']}</td>
-                  <td><a href='modification.php?id={$row['idConsultation']}' class='btn btn-warning btn-sm'>Modifier</a> | <a href='suppression.php?id={$row['idConsultation']}' class='btn btn-danger btn-sm'>Supprimer</a></td>
-                </tr>";
-      }
+              while ($row = $result->fetch_assoc()) {
+                echo "<tr>
+                        <td>" . date('d/m/Y', strtotime($row['DateConsultation'])) . "</td>
+                        <td>{$row['Heure']}</td>
+                        <td>{$row['Duree']}</td>
+                        <td>{$row['NomMedecin']} {$row['PrenomMedecin']}</td>
+                        <td>{$row['NomPatient']} {$row['PrenomPatient']}</td>
+                        <td><a href='modification.php?id={$row['idConsultation']}' class='btn btn-warning btn-sm'>Modifier</a> | <a href='suppression.php?id={$row['idConsultation']}' class='btn btn-danger btn-sm'>Supprimer</a></td>
+                      </tr>";
+            }
 
       echo "</tbody></table>";
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <?php
     session_start();
@@ -12,26 +13,26 @@
 
     include '../Base/header.php';
     ?>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Statistiques</title>
     <!-- Ajoutez les liens vers les fichiers CSS Bootstrap ici -->
-    <link href="../Base/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../Base/accueil.css" rel="stylesheet"/>
-    <link href="../Base/style.css" rel="stylesheet"/>
+    <link href="../Base/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Base/accueil.css" rel="stylesheet" />
     <!-- Ajoutez les liens vers les fichiers JavaScript Bootstrap et jQuery ici -->
     <script src="../Base/jquery-3.2.1.slim.min.js"></script>
     <script src="../Base/popper.min.js"></script>
-    <script src="../Base/bootstrap.bundle.min.js"></script>
+    <script src="../Base/bootstrap.bundle.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-<?php
-include '../Base/config.php';
+    <?php
+    include '../Base/config.php';
 
-// Requête pour récupérer la répartition des usagers selon leur sexe et leur âge
-$sql = "SELECT 
+    // Requête pour récupérer la répartition des usagers selon leur sexe et leur âge
+    $sql = "SELECT 
             CASE WHEN Civilite = '1' THEN 'Homme'
                 WHEN Civilite = '2' THEN 'Femme'
                 ELSE 'Autre' END AS Sexe,
@@ -41,10 +42,16 @@ $sql = "SELECT
         FROM Patient
         GROUP BY Civilite";
 
-$result = $conn->query($sql);
+    $result = $conn->query($sql);
 
-// Affichage du tableau à double entrée avec Bootstrap
-echo "<div class='container mt-4'>
+    // Fetch data and store it in a PHP array
+    $data = [];
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+    // Affichage du tableau à double entrée avec Bootstrap
+    echo "<div class='container mt-4'>
         <h2>Repartition des usagers selon leur sexe et leur age</h2>
         <table class='table table-bordered'>
             <thead class='thead-dark'>
@@ -57,26 +64,29 @@ echo "<div class='container mt-4'>
             </thead>
             <tbody>";
 
-while ($row = $result->fetch_assoc()) {
-    echo "<tr>
+    foreach ($data as $row) {
+        echo "<tr>
             <td>{$row['Sexe']}</td>
             <td>{$row['MoinsDe25']}</td>
             <td>{$row['Entre25Et50']}</td>
             <td>{$row['PlusDe50']}</td>
           </tr>";
-}
+    }
 
-echo "</tbody></table></div>";
+    echo "</tbody></table>";
 
-// Fermer la connexion
-$conn->close();
-?>
+    echo "</div>";
 
-<?php
-include '../Base/config.php';
+    // Fermer la connexion
+    $conn->close();
+    ?>
 
-// Requête pour récupérer la durée totale des consultations par médecin
-$sql = "SELECT m.idMedecin, 
+
+    <?php
+    include '../Base/config.php';
+
+    // Requête pour récupérer la durée totale des consultations par médecin
+    $sql = "SELECT m.idMedecin, 
             CASE WHEN m.Civilite = '1' THEN 'Monsieur' 
                     WHEN m.Civilite = '2' THEN 'Madame' 
                     ELSE 'Autre' END AS CiviliteMedecin,
@@ -86,10 +96,10 @@ $sql = "SELECT m.idMedecin,
         LEFT JOIN Consultations c ON m.idMedecin = c.idMedecin
         GROUP BY m.idMedecin, CiviliteMedecin, m.Prenom, m.Nom";
 
-$result = $conn->query($sql);
+    $result = $conn->query($sql);
 
-// Affichage du tableau de la durée totale des consultations par médecin avec Bootstrap
-echo "<div class='container mt-4'>
+    // Affichage du tableau de la durée totale des consultations par médecin avec Bootstrap
+    echo "<div class='container mt-4'>
         <h2>Durée totale des consultations par médecin (en nombre d'heures)</h2>
         <table class='table table-bordered'>
             <thead class='thead-dark'>
@@ -100,18 +110,19 @@ echo "<div class='container mt-4'>
             </thead>
             <tbody>";
 
-while ($row = $result->fetch_assoc()) {
-    echo "<tr>
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>
             <td>{$row['CiviliteMedecin']} {$row['Prenom']} {$row['Nom']}</td>
             <td>{$row['DureeTotale']}</td>
           </tr>";
-}
+    }
 
-echo "</tbody></table></div>";
+    echo "</tbody></table></div>";
 
-// Fermer la connexion
-$conn->close();
-?>
+    // Fermer la connexion
+    $conn->close();
+    ?>
 
 </body>
+
 </html>
