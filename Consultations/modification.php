@@ -17,7 +17,7 @@
     <title>Modification d'une consultation</title>
     <!-- Ajoutez les liens vers les fichiers CSS Bootstrap ici -->
     <link href="../Base/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Base/accueil.css" rel="stylesheet" />
+    
     <link href="../Base/style.css" rel="stylesheet" />
     <!-- Ajoutez les liens vers les fichiers JavaScript Bootstrap et jQuery ici -->
     <script src="../Base/jquery-3.2.1.slim.min.js"></script>
