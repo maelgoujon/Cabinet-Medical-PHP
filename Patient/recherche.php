@@ -7,7 +7,7 @@ session_start();
 
 // Vérifier si l'utilisateur est authentifié
 if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-    header("Location: /Projet/projet_php/Base/login.php");
+    header("Location: /Base/login.php");
     exit();
 }
 
@@ -104,6 +104,6 @@ include '../Base/header.php';
 
 
     <!-- Bouton pour revenir à la page "ajoutcontact.php" -->
-    <a href="/../Projet/projet_php/index.php" class="accueil-link">Accueil</a>
+    <a href="/../index.php" class="accueil-link">Accueil</a>
 </body>
 </html>

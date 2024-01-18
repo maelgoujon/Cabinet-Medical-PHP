@@ -8,7 +8,7 @@
 
       // Vérifier si l'utilisateur est authentifié
       if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
-          header("Location: /Projet/projet_php/Base/login.php");
+          header("Location: /Base/login.php");
           exit();
       }
 
@@ -71,7 +71,7 @@
                     echo "<div class='container bg-white p-4 border border-success'>
                             <p class='lead'>Consultation ajoutée avec succès!</p>
                             <div class='mt-3'>
-                                <a href='http://localhost:5050/Projet/projet_php/Consultations/' class='btn btn-primary'>Accueil consultation</a>
+                                <a href='http://localhost:5050/Consultations/' class='btn btn-primary'>Accueil consultation</a>
                             </div>
                            </div>";
                 } else {
