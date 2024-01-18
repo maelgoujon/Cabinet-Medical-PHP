@@ -33,7 +33,7 @@ include '../Base/header.php';
     <?php
     // Connexion au serveur MySQL
     $server = 'localhost';
-    $db = 'PHP_Project';
+    $db = 'php_project';
     $login = "etu";
     $mdp = "\$iutinfo";
 

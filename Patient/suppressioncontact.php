@@ -24,7 +24,7 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
     <?php
     // Connexion au serveur MySQL
     $server = 'localhost';
-    $db = 'PHP_Project';
+    $db = 'php_project';
     $login = "etu";
     $mdp = "\$iutinfo";
 
