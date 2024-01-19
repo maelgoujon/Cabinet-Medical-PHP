@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="../Base/jquery-3.2.1.slim.min.js"></script>
     <script src="../Base/popper.min.js"></script>
     <script src="../Base/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/png" href="../Images/logo.png" />
     <title>Authentification</title>
 </head>
 <body> <!-- Ajout de la classe container -->

@@ -36,7 +36,7 @@
                 <a class="nav-link" href="../">Accueil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../patient/">Catient</a>
+                <a class="nav-link" href="../patient/">Patient</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../medecin/">Medecin</a>

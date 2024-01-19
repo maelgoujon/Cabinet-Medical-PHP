@@ -27,9 +27,9 @@
 <body>
     <div class="container">
         <?php
-        $server = 'localhost';
-        $db = 'php_project';
-        $login = "etu";
+        $server = 'mysql-goujondardetphp.alwaysdata.net';
+        $db = 'goujondardetphp_sql';
+        $login = "344089";
         $mdp = "\$iutinfo";
 
         $validationMessage = '';

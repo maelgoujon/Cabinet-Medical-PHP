@@ -7,7 +7,7 @@ if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
     exit();
 }
 
-include '/Base/header_accueil.php';
+include 'Base/header_accueil.php';
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ include '/Base/header_accueil.php';
                 <p>
                     Cliquez ici pour voir la liste des patients :
                     <br />
-                    <a href="patient/">patients</a>
+                    <a href="patient/">Patients</a>
                 </p>
             </div>
         </div>
@@ -72,7 +72,7 @@ include '/Base/header_accueil.php';
                 <p>
                     Découvrez vos consultations :
                     <br />
-                    <a href="consultations/">consultations</a>
+                    <a href="consultations/">Consultations</a>
                 </p>
             </div>
         </div>
