@@ -24,7 +24,7 @@ include '../Base/header.php';
     <script src="../Base/jquery-3.2.1.slim.min.js"></script>
     <script src="../Base/popper.min.js"></script>
     <script src="../Base/bootstrap.bundle.min.js"></script>
-    <title>Medecin</title>
+    <title>medecin</title>
     
   </head>
 
@@ -34,7 +34,7 @@ include '../Base/header.php';
         include '../Base/config.php';
 
         // Requête pour récupérer tous les médecins avec le nom des patients associés
-        $sql = "SELECT m.idMedecin, m.Civilite, m.Prenom, m.Nom FROM Medecin m";
+        $sql = "SELECT m.idMedecin, m.Civilite, m.Prenom, m.Nom FROM medecin m";
         $result = $conn->query($sql);
 
         // Affichage des médecins dans un tableau HTML

@@ -114,7 +114,7 @@
 
                     <button type="button" onclick="history.back()" class="btn btn-warning">Retour</button>
                     <button type="submit" class="btn btn-primary">Modifier le médecin</button>
-                    <a href="../Medecin">
+                    <a href="../medecin">
                         <button type="button" class="btn btn-danger">Accueil Médecin</button>
                     </a>
                 </form>

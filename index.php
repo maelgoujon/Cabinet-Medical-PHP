@@ -42,7 +42,7 @@ include '/Base/header_accueil.php';
                 <p>
                     Cliquez ici pour voir la liste des patients :
                     <br />
-                    <a href="Patient/">Patients</a>
+                    <a href="patient/">patients</a>
                 </p>
             </div>
         </div>
@@ -57,7 +57,7 @@ include '/Base/header_accueil.php';
                 <p>
                     Cliquez ici pour voir la liste des médeicns :
                     <br />
-                    <a href="Medecin/">Médecins</a>
+                    <a href="medecin/">Médecins</a>
                 </p>
             </div>
         </div>
@@ -72,7 +72,7 @@ include '/Base/header_accueil.php';
                 <p>
                     Découvrez vos consultations :
                     <br />
-                    <a href="Consultations/">Consultations</a>
+                    <a href="consultations/">consultations</a>
                 </p>
             </div>
         </div>

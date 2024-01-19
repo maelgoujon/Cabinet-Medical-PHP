@@ -155,13 +155,13 @@ include '../Base/header.php';
                     <input type="hidden" name="idPatient" value="<?php echo isset($patient['idPatient']) ? $patient['idPatient'] : ''; ?>">
                     <button type="button" onclick="history.back()" class="btn btn-danger">Retour</button>
                     <button type="submit" class="btn btn-primary">Modifier le patient</button>
-                    <a href="../Patient">
-                        <button type="button" class="btn btn-warning">Accueil Patient</button>
+                    <a href="../patient">
+                        <button type="button" class="btn btn-warning">Accueil patient</button>
                     </a>
                 </form>
             <?php
             } else {
-                echo "Patient non trouvé.";
+                echo "patient non trouvé.";
             }
             ?>
         </form>

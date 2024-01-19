@@ -58,7 +58,7 @@ include '../Base/header.php';
             $whereConditions = '(' . implode(' OR ', array_fill(0, count($params), 'Civilite LIKE ? OR Prenom LIKE ? OR Nom LIKE ? OR Adresse LIKE ? OR Date_de_naissance LIKE ? OR Lieu_de_naissance LIKE ? OR Numero_Securite_Sociale LIKE ?')) . ')';
 
             // Requête SQL de recherche
-            $sql = "SELECT * FROM Patient WHERE $whereConditions";
+            $sql = "SELECT * FROM patient WHERE $whereConditions";
 
             // Preparation de la requête
             $stmt = $linkpdo->prepare($sql);

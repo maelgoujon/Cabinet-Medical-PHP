@@ -39,7 +39,7 @@
             SUM(CASE WHEN YEAR(CURDATE()) - YEAR(Date_de_naissance) < 25 THEN 1 ELSE 0 END) AS MoinsDe25,
             SUM(CASE WHEN YEAR(CURDATE()) - YEAR(Date_de_naissance) BETWEEN 25 AND 50 THEN 1 ELSE 0 END) AS Entre25Et50,
             SUM(CASE WHEN YEAR(CURDATE()) - YEAR(Date_de_naissance) > 50 THEN 1 ELSE 0 END) AS PlusDe50
-        FROM Patient
+        FROM patient
         GROUP BY Civilite";
 
     $result = $conn->query($sql);
@@ -89,12 +89,12 @@
     $sql = "SELECT m.idMedecin, 
             CASE WHEN m.Civilite = '1' THEN 'Monsieur' 
                     WHEN m.Civilite = '2' THEN 'Madame' 
-                    ELSE 'Autre' END AS CiviliteMedecin,
+                    ELSE 'Autre' END AS Civilitemedecin,
             m.Prenom, m.Nom,
             SEC_TO_TIME(SUM(c.Duree * 60)) AS DureeTotale
-        FROM Medecin m
-        LEFT JOIN Consultations c ON m.idMedecin = c.idMedecin
-        GROUP BY m.idMedecin, CiviliteMedecin, m.Prenom, m.Nom";
+        FROM medecin m
+        LEFT JOIN consultations c ON m.idMedecin = c.idMedecin
+        GROUP BY m.idMedecin, Civilitemedecin, m.Prenom, m.Nom";
 
     $result = $conn->query($sql);
 
@@ -112,7 +112,7 @@
 
     while ($row = $result->fetch_assoc()) {
         echo "<tr>
-            <td>{$row['CiviliteMedecin']} {$row['Prenom']} {$row['Nom']}</td>
+            <td>{$row['Civilitemedecin']} {$row['Prenom']} {$row['Nom']}</td>
             <td>{$row['DureeTotale']}</td>
           </tr>";
     }

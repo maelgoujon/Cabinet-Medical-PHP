@@ -25,7 +25,7 @@ include '../Base/header.php';
     <script src="../Base/jquery-3.2.1.slim.min.js"></script>
     <script src="../Base/popper.min.js"></script>
     <script src="../Base/bootstrap.bundle.min.js"></script>
-    <title>Patient</title>
+    <title>patient</title>
     
   </head>
 
@@ -35,9 +35,9 @@ include '../Base/header.php';
                 include '../Base/config.php';
 
                 // Requête pour récupérer tous les patients avec le nom du médecin référent
-                $sql = "SELECT p.idPatient, p.Civilite, p.Prenom, p.Nom, p.Adresse, p.Date_de_naissance, p.Lieu_de_naissance, p.Numero_Securite_Sociale, m.Nom AS NomMedecin, m.Prenom AS PrenomMedecin
-                        FROM Patient p
-                        LEFT JOIN Medecin m ON p.idMedecin = m.idMedecin";
+                $sql = "SELECT p.idPatient, p.Civilite, p.Prenom, p.Nom, p.Adresse, p.Date_de_naissance, p.Lieu_de_naissance, p.Numero_Securite_Sociale, m.Nom AS Nommedecin, m.Prenom AS Prenommedecin
+                        FROM patient p
+                        LEFT JOIN medecin m ON p.idMedecin = m.idMedecin";
 
                 $result = $conn->query($sql);
 
@@ -66,7 +66,7 @@ include '../Base/header.php';
                                 <td>" . date('d/m/Y', strtotime($row['Date_de_naissance'])) . "</td>
                                 <td>{$row['Lieu_de_naissance']}</td>
                                 <td>{$row['Numero_Securite_Sociale']}</td>
-                                <td>{$row['NomMedecin']} {$row['PrenomMedecin']}</td>
+                                <td>{$row['Nommedecin']} {$row['Prenommedecin']}</td>
                                 <td><a href='modification.php?id={$row['idPatient']}' class='btn btn-warning btn-sm'>Modifier</a> | <a href='suppression.php?id={$row['idPatient']}' class='btn btn-danger btn-sm'>Supprimer</a></td>
                               </tr>";
                     }

@@ -34,12 +34,12 @@
     include '../Base/config.php';
 
     // Requête pour récupérer la liste des médecins
-    $sqlMedecins = "SELECT * FROM Medecin";
-    $resultMedecins = $conn->query($sqlMedecins);
+    $sqlmedecins = "SELECT * FROM medecin";
+    $resultmedecins = $conn->query($sqlmedecins);
 
     // Requête pour récupérer la liste des patients
-    $sqlPatients = "SELECT * FROM Patient";
-    $resultPatients = $conn->query($sqlPatients);
+    $sqlpatients = "SELECT * FROM patient";
+    $resultpatients = $conn->query($sqlpatients);
 
     // Formulaire de saisie de consultation
     echo "<h2>Ajouter une consultation</h2>";
@@ -68,34 +68,34 @@
                     </select>
                 </div>
                 <div class='col-md-6 mb-3'>
-                    <label for='idPatient' class='form-label'>Patient:</label>
+                    <label for='idPatient' class='form-label'>patient:</label>
                     <select name='idPatient' class='form-select' required>
                         <option value='' selected disabled>Sélectionner un patient</option>";
-                    while ($rowPatient = $resultPatients->fetch_assoc()) {
-                        $idPatient = $rowPatient['idPatient'];
-                        $nomPatient = $rowPatient['Nom'];
-                        $prenomPatient = $rowPatient['Prenom'];
-                        $sqlMedecinAssocie = "SELECT idMedecin FROM Patient WHERE idPatient = $idPatient";
-                        $resultMedecinAssocie = $conn->query($sqlMedecinAssocie);
-                        $rowMedecinAssocie = $resultMedecinAssocie->fetch_assoc();
-                        $idMedecinAssocie = $rowMedecinAssocie['idMedecin'];
-                        echo "<option value='$idPatient' data-idMedecinAssocie='$idMedecinAssocie'>$nomPatient $prenomPatient</option>";
+                    while ($rowpatient = $resultpatients->fetch_assoc()) {
+                        $idPatient = $rowpatient['idPatient'];
+                        $nompatient = $rowpatient['Nom'];
+                        $prenompatient = $rowpatient['Prenom'];
+                        $sqlmedecinAssocie = "SELECT idMedecin FROM patient WHERE idPatient = $idPatient";
+                        $resultmedecinAssocie = $conn->query($sqlmedecinAssocie);
+                        $rowmedecinAssocie = $resultmedecinAssocie->fetch_assoc();
+                        $idMedecinAssocie = $rowmedecinAssocie['idMedecin'];
+                        echo "<option value='$idPatient' data-idMedecinAssocie='$idMedecinAssocie'>$nompatient $prenompatient</option>";
                     }
     echo "</select></div>
                 <div class='col-md-6 mb-3'>
                     <label for='idMedecin' class='form-label'>Médecin:</label>
                     <select name='idMedecin' id='medecinSelect' class='form-select' required>
                         <option value='' selected disabled>Sélectionner un médecin</option>";
-                    while ($rowMedecin = $resultMedecins->fetch_assoc()) {
-                        echo "<option value='{$rowMedecin['idMedecin']}'>{$rowMedecin['Nom']} {$rowMedecin['Prenom']}</option>";
+                    while ($rowmedecin = $resultmedecins->fetch_assoc()) {
+                        echo "<option value='{$rowmedecin['idMedecin']}'>{$rowmedecin['Nom']} {$rowmedecin['Prenom']}</option>";
                     }
     echo "</select></div>
             </div>
             <div class='mb-3'>
                     <input type='submit' value='Ajouter la consultation' class='btn btn-primary'>
                     <input type='button' value='Retour' onclick='history.back()' class='btn btn-warning'>
-                    <a href='../Consultations/'>
-                        <button type='button'  class='btn btn-danger'>Accueil Consultations</button>
+                    <a href='../consultations/'>
+                        <button type='button'  class='btn btn-danger'>Accueil consultations</button>
                     </a>
                 </div>
         </form>";
@@ -113,8 +113,8 @@
         // Écouter les changements dans le menu déroulant des patients
         patientSelect.addEventListener("change", function() {
             // Récupérer l'ID du médecin associé au patient sélectionné
-            var selectedPatient = patientSelect.options[patientSelect.selectedIndex];
-            var idMedecinAssocie = selectedPatient.getAttribute("data-idMedecinAssocie");
+            var selectedpatient = patientSelect.options[patientSelect.selectedIndex];
+            var idMedecinAssocie = selectedpatient.getAttribute("data-idMedecinAssocie");
 
             // Pré-sélectionner automatiquement le médecin associé
             if (idMedecinAssocie) {

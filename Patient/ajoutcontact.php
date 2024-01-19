@@ -73,9 +73,9 @@ include '../Base/header.php';
                         }
                     }
 
-                    // Récupération des médecins depuis la table "Medecin"
-                    $sqlMedecin = "SELECT idMedecin, Nom FROM Medecin";
-                    $stmtMedecin = $linkpdo->query($sqlMedecin);
+                    // Récupération des médecins depuis la table "medecin"
+                    $sqlmedecin = "SELECT idMedecin, Nom FROM medecin";
+                    $stmtmedecin = $linkpdo->query($sqlmedecin);
 
                 } catch (PDOException $e) {
                     die('Erreur : ' . $e->getMessage());
@@ -125,11 +125,11 @@ include '../Base/header.php';
             </div>
 
             <div class="mb-3">
-                <label for="idMedecin" class="form-label">Medecin Referent :</label>
+                <label for="idMedecin" class="form-label">medecin Referent :</label>
                 <select id="idMedecin" name="idMedecin" class="form-select" required>
                     <?php
                     // Affichage des options
-                    while ($row = $stmtMedecin->fetch(PDO::FETCH_ASSOC)) {
+                    while ($row = $stmtmedecin->fetch(PDO::FETCH_ASSOC)) {
                         echo '<option value="' . $row['idMedecin'] . '">' . $row['Civilite'] . $row['Nom'] . '</option>';
                     }
                     ?>
@@ -139,8 +139,8 @@ include '../Base/header.php';
             <div class="mb-3">
                 <input type="submit" value="Ajouter le patient" class="btn btn-primary">
                 <input type="button" value="Retour" onclick="history.back()" class="btn btn-warning">
-                <a href="../Patient/">
-                    <button type="button" class="btn btn-danger">Accueil Patient</button>
+                <a href="../patient/">
+                    <button type="button" class="btn btn-danger">Accueil patient</button>
                 </a>
             </div>
         </form>

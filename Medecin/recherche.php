@@ -23,7 +23,7 @@ include '../Base/header.php';
     <body>
 
     
-    <h1>Recherche de Medecin</h1>
+    <h1>Recherche de medecin</h1>
     <form action="recherche.php" method="POST">
         <label for="keywords">Mots-cles :</label>
         <input type="text" id="keywords" name="keywords" required placeholder="Exemple : 'Toto' ou 'Toto, Tata'">
@@ -58,7 +58,7 @@ include '../Base/header.php';
             $whereConditions = '(' . implode(' OR ', array_fill(0, count($params), 'Civilite LIKE ? OR Prenom LIKE ? OR Nom LIKE ? ')) . ')';
 
             // Requête SQL de recherche
-            $sql = "SELECT * FROM Medecin WHERE $whereConditions";
+            $sql = "SELECT * FROM medecin WHERE $whereConditions";
 
             // Preparation de la requête
             $stmt = $linkpdo->prepare($sql);

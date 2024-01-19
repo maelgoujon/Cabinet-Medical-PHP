@@ -15,8 +15,8 @@
 <?php
 include'../Base/config.php';
 
-$sqlMedecin = "SELECT idMedecin, Nom FROM Medecin";
-$stmtMedecin = $linkpdo->query($sqlMedecin);
+$sqlmedecin = "SELECT idMedecin, Nom FROM medecin";
+$stmtmedecin = $linkpdo->query($sqlmedecin);
 ?>
 
 

@@ -65,9 +65,9 @@ include '../Base/header.php';
                 }
             }
 
-            // Récupération des médecins depuis la table "Medecin"
-            $sqlMedecin = "SELECT idMedecin, Nom FROM Medecin";
-            $stmtMedecin = $linkpdo->query($sqlMedecin);
+            // Récupération des médecins depuis la table "medecin"
+            $sqlmedecin = "SELECT idMedecin, Nom FROM medecin";
+            $stmtmedecin = $linkpdo->query($sqlmedecin);
 
         } catch (PDOException $e) {
             die('Erreur : ' . $e->getMessage());
@@ -97,7 +97,7 @@ include '../Base/header.php';
                 <div class="mb-3">
                     <input type="submit" value="Ajouter le médecin" class="btn btn-primary">
                     <input type="button" value="Retour" onclick="history.back()" class="btn btn-warning">
-                    <a href="../Medecin/">
+                    <a href="../medecin/">
                         <button type="button"  class="btn btn-danger">Accueil Médecin</button>
                     </a>
                 </div>

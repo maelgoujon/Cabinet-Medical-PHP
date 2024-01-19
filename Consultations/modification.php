@@ -121,8 +121,8 @@
                     <div class="mb-3">
                         <input type="button" value="Retour" onclick="history.back()" class="btn btn-warning">
                         <input type="submit" value="Modifier la consultation" class="btn btn-primary">
-                        <a href="../Consultations">
-                            <button type="button" class="btn btn-danger">Accueil Consultations</button>
+                        <a href="../consultations">
+                            <button type="button" class="btn btn-danger">Accueil consultations</button>
                         </a>
                     </div>
                 </form>

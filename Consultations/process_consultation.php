@@ -43,7 +43,7 @@
             $idMedecin = $_POST['idMedecin'];
 
             // Vérifier si le médecin est libre
-            $sqlCheckAvailability = "SELECT * FROM Consultations 
+            $sqlCheckAvailability = "SELECT * FROM consultations 
                                     WHERE idMedecin = $idMedecin 
                                     AND DateConsultation = '$dateConsultation' 
                                     AND (
@@ -64,14 +64,14 @@
                            </div>";
             } else {
                 // Le médecin est libre, ajouter la consultation
-                $sqlAddConsultation = "INSERT INTO Consultations (DateConsultation, Heure, Duree, idMedecin, idPatient) 
+                $sqlAddConsultation = "INSERT INTO consultations (DateConsultation, Heure, Duree, idMedecin, idPatient) 
                                     VALUES ('$dateConsultation', '$heure', $duree, $idMedecin, $idPatient)";
                 
                 if ($conn->query($sqlAddConsultation) === TRUE) {
                     echo "<div class='container bg-white p-4 border border-success'>
                             <p class='lead'>Consultation ajoutée avec succès!</p>
                             <div class='mt-3'>
-                                <a href='http://localhost:5050/Consultations/' class='btn btn-primary'>Accueil consultation</a>
+                                <a href='../consultations/' class='btn btn-primary'>Accueil consultation</a>
                             </div>
                            </div>";
                 } else {

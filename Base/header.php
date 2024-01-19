@@ -36,13 +36,13 @@
                 <a class="nav-link" href="../">Accueil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../Patient/">Patient</a>
+                <a class="nav-link" href="../patient/">Catient</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../Medecin/">Medecin</a>
+                <a class="nav-link" href="../medecin/">Medecin</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../Consultations/">Consultations</a>
+                <a class="nav-link" href="../consultations/">Consultations</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../Stats/statistiques.php">Statistiques</a>
