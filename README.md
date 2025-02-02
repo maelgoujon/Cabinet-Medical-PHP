@@ -2,6 +2,7 @@ Gestion - Cabinet Médical
 
 Description du Projet :
 Le projet de gestion de cabinet médical en PHP vise à créer un système complet de gestion pour les cabinets médicaux, facilitant la gestion des patients, des rendez-vous et des professionnels de la santé.
+![image](https://github.com/user-attachments/assets/af931c67-00ad-408d-b28b-b92da3187764)
 
 Fonctionnalités:
 
